@@ -1,0 +1,34 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  input, button, p {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+  }
+
+  #post-item {
+    border: 1px solid rgb(214, 209, 157);
+    margin: 10px;
+  }
+  #post-title {
+    font-size: 15px;
+    color: rgb(104, 104, 245)
+  }
+  #post-body {
+    font-size: 14px;
+    color: rgb(43, 240, 174);
+  }
+  #posts-wrapper {
+    margin-top: 10px;
+  }
+  #root {
+    position: absolute;
+    top: 0;
+  }
