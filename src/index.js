@@ -6,40 +6,50 @@ import { comments } from "./js/comments";
 function App() {
     let state = {
         posts: [],
-        loading: true
+        loading: true,
+        error: ''
     };
-    const loadingElement = document.getElementById('loading');
+    const info = document.getElementById('info');
 
     async function getComments() {
         const sameTimeAmount = 5;
         const size = Math.ceil(state.posts.length/sameTimeAmount);
         for (let i=0; i<size; i++) {
-            const temp = state.posts.slice(sameTimeAmount*i, sameTimeAmount*i + sameTimeAmount).map((item) => {
+            const temp = state.posts.slice(sameTimeAmount*i, sameTimeAmount*i + sameTimeAmount).map((item, ind) => {
                 return fetch(`https://jsonplaceholder.typicode.com/comments?postId=${item.id}`)
             });
             await Promise.allSettled(temp)
-                .then(results => results.forEach(result=> result.value.json().then(res=> comments(res))))
+                .then(results => results.forEach((result)=> {
+                    if (result.status==="fulfilled") return result.value.json()
+                    .then(res=> comments(res))
+                }))
         }
     }
 
     fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
+        .then(responce => {
+            if (responce.ok) return responce.json()
+        })
         .then(result => {
             state.posts = result;
             setTimeout(() => {
-                state.loading = false;
+                state.loading = false
                 getComments()
             }, 1500)
-
-
-    }) 
+        })
+        .catch((err) => {
+            setTimeout(() => {
+                info.innerText = `Что-то пошло не так, ошибка: ${err}
+            Попробуйте еще раз.`
+            }, 1500)
+        }) 
 
     watcher(state, () => {
-        if (state.loading) loadingElement.textContent="Loading...";
+        if (state.loading) info.textContent="Loading...";
         else {
-            loadingElement.textContent="";
+            info.textContent="";
             state.posts.map(item => post(item))
-        }         
+        }       
     })
 
 }
