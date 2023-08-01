@@ -1,7 +1,7 @@
 export const post = (elem) => {
-    
     const postItem = document.createElement('section');
-    postItem.setAttribute('id', 'post-item');
+    postItem.setAttribute('id', elem.id);
+    postItem.setAttribute('class', 'post-item');
 
     const title = document.createElement('h1');
     title.innerText = elem.title;
