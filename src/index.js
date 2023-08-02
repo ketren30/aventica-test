@@ -10,6 +10,8 @@ function App() {
         error: ''
     };
     const info = document.getElementById('info');
+    const wrapper = document.getElementById('info-wrapper');
+    const spinner = document.getElementById('spinner');
 
     async function getComments() {
         const sameTimeAmount = 5;
@@ -39,8 +41,8 @@ function App() {
         })
         .catch((err) => {
             setTimeout(() => {
-                info.innerText = `Что-то пошло не так, ошибка: ${err}
-            Попробуйте еще раз.`
+                info.innerText = `Что-то пошло не так, ошибка: ${err}. Попробуйте еще раз.`;
+                wrapper.removeChild(spinner);
             }, 1500)
         }) 
 
@@ -48,6 +50,7 @@ function App() {
         if (state.loading) info.textContent="Loading...";
         else {
             info.textContent="";
+            wrapper.removeChild(spinner);
             state.posts.map(item => post(item))
         }       
     })

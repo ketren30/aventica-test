@@ -1,6 +1,5 @@
 body, h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  
 }
 * {
   box-sizing: border-box;
@@ -9,26 +8,26 @@ body, h1, h2, h3, h4, h5, h6 {
   width: 100%;
   background-color: #E5E5E5;
   min-height: 100vh;
+  padding: 20px;
+  font-family: Franklin Gothic Book;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.3vw; 
+  letter-spacing: 0.192px;
 }
 #posts-wrapper { 
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding-top: 25px;
 }
 .post-item {
   width: 30vw;
   color: white;
   background-color: #15202B;
   margin-bottom: 25px;
-  padding: 3vw;
-  font-family: Franklin Gothic Book;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 2.3vw; 
-  letter-spacing: 0.192px;
-
+  padding: 2vw 2vw 1vw 2vw;
+  
 }
 .post-item:nth-child(3n+1) {
   color: black;
@@ -45,9 +44,56 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .post-body {
   font-size: 1.25vw;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
-#comments {
-  margin-left: 50px;
+.comment {
+  background-color: #E5E5E5;
+  margin: 0 0 10px 15px;
+  color: black;
+  font-size: 1vw;
+  border-radius: 3px;
+  line-height: 1.4vw;
+  padding: 10px;
+}
+.comment-email {
+  font-size: 0.8vw;
+  color: #15202B;
+  margin-bottom: 8px;
+  margin-left: 25px;
+}
+.comment-name {
+  margin-left: 15px;
+}
+
+#spinner {
+  height: 40px;
+  width: 40px;
+  border: 3px solid #15202B;
+  border-top-color:  transparent;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+      transform: rotate(0deg);
+  }
+
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+#info-wrapper {
+  display: flex;
+  margin: 0 auto;
+  width: fit-content;
+}
+
+#info {
+  color: #15202B;
+  font-weight: 600;
+  margin-right: 20px;
+  align-items: center;
 }
