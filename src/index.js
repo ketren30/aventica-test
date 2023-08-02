@@ -13,8 +13,7 @@ function App() {
     const wrapper = document.getElementById('info-wrapper');
     const spinner = document.getElementById('spinner');
 
-    async function getComments() {
-        const sameTimeAmount = 5;
+    async function getComments(sameTimeAmount) {
         const size = Math.ceil(state.posts.length/sameTimeAmount);
         for (let i=0; i<size; i++) {
             const temp = state.posts.slice(sameTimeAmount*i, sameTimeAmount*i + sameTimeAmount).map((item, ind) => {
@@ -36,7 +35,7 @@ function App() {
             state.posts = result;
             setTimeout(() => {
                 state.loading = false
-                getComments()
+                getComments(5)
             }, 1500)
         })
         .catch((err) => {
